@@ -1,0 +1,81 @@
+<h1>
+  Add
+</h1>
+<div class="row">
+  <div class="col-xs-12">
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+
+      <div class="row">
+        <div class="col-sm-5 form-group">
+          <label
+            for="word1"
+            style="color: var(--sz-blue)"
+            >Word1</label>
+          <input
+            type="text"
+            id="word1"
+            name="word1" 
+            class="form-control"
+            ngModel
+            required
+            #wordInput>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-5 form-group">
+          <label
+            for="word2"
+            style="color: var(--sz-green)"
+            >Word2</label>
+          <input
+            type="text"
+            id="word2"
+            name="word2" 
+            class="form-control"
+            ngModel
+            required
+            #wordInput>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-5 form-group">
+          <label for="category">Category</label>
+          <input
+            type="text"
+            id="category"
+            name="category" 
+            class="form-control"
+            ngModel
+            #wordInput>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-5 form-group">
+          <label for="notes">Notes</label>
+          <input
+            type="text"
+            id="notes"
+            name="notes" 
+            class="form-control"
+            ngModel
+            #wordInput>
+        </div>
+      </div>
+
+      <div class="row bottom-row">
+        <div class="col-xs-12">
+          <button
+            class="btn btn-success"
+            type="submit"
+            [disabled]="!f.valid"
+            >Add
+          </button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>

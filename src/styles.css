@@ -1,1 +1,107 @@
-/* You can add global styles to this file, and also import other style files */
+/* color palette*/
+:root {
+  --sz-red: #e74c3c;
+  --sz-orange: #fa923f;
+  --sz-yellow-orange:#faa61a;
+  --sz-green: #43b581;
+  --sz-blue: #7289da;
+  --sz-blue-grey: #607d8b;
+  --sz-light-grey: #d3d3d3;
+  --sz-lightest-dark: #36393f;
+  --sz-lighter-dark: #2f3136;
+  --sz-dark: #202225;
+}
+
+html body {
+  background-color: var(--sz-dark);
+  /* font-size: 16px; */
+  /* margin-left: 5px; */
+}
+
+div {
+  background-color: var(--sz-lighter-dark);
+  /* padding: 20px; */
+}
+
+button {
+  padding: 20px;
+}
+
+p {
+  color: var(--sz-red)
+}
+
+h1, h2, h3 {
+  color: var(--sz-yellow-orange);
+}
+
+label {
+  /* padding: 5px; */
+  color: var(--sz-blue-grey);
+}
+
+hr {
+  padding-bottom: 2px;
+}
+
+input[type="text"], textarea, .list-group-item {
+  background-color: var(--sz-lightest-dark);
+  color: white;
+}
+
+li:hover {
+  background-color: var(--sz-light-grey);
+}
+
+a {
+  cursor: pointer;
+}
+
+table, th, tr, td {
+  color: var(--sz-green);
+}
+
+.table>tbody>tr>td,
+.table>tbody>tr>th{
+  border-top: none;
+  /* border-bottom: none; */
+}
+
+.table>thead>tr>th {
+  border-top: none;
+  /* border-bottom: none; */
+}
+
+.table-bordered > tbody > tr > td,
+    .table-bordered > thead > tr > td,
+    .table-bordered {
+        border-bottom: red;
+        border-top: red;
+    }
+
+thead {
+  background-color: var(--sz-lightest-dark);
+}
+
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+  background-color: var(--sz-dark);
+}
+
+
+.navbar .nav > .active > a,
+.navbar .nav > .active > a:hover,
+.navbar .nav > .active > a:focus {
+  background: var(--sz-lightest-dark);
+}
+
+.navbar {
+  border: none;
+}
+
+.eng {
+  color: var(--sz-blue);
+}
+
+.hun {
+  color: var(--sz-green);
+}
