@@ -5,7 +5,7 @@ export class Word {
     public word1: string,
     // public hungarian: string,
     public word2: string,
-    public nocategory: string = null,
-    public notes: string = null,
+    public nocategory?: string,
+    public notes?: string,
     ) {}
 }

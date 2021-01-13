@@ -32,7 +32,8 @@ p {
 }
 
 h1, h2, h3 {
-  color: var(--sz-yellow-orange);
+  color: var(--sz-red);
+  font-weight: bolder;
 }
 
 label {

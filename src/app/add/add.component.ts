@@ -1,8 +1,8 @@
+import { HttpService } from './../shared/http.service';
 import { WordService } from './../word.service';
 import { Component, OnInit } from '@angular/core';
-import { ElementRef } from '@angular/core';
-import { ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Word } from '../shared/word.model';
 
 @Component({
   selector: 'app-add',
@@ -14,25 +14,17 @@ export class AddComponent implements OnInit {
   // @ViewChild('f', { static: false }) formRef: NgForm;
   // formInputValue = '';
 
-  constructor(public wordService: WordService) { }
+  constructor(
+    public wordService: WordService,
+    public httpService: HttpService
+    ) { }
 
   ngOnInit() {
   }
 
   onSubmit(form: NgForm) {
-    this.wordService.wordToAdd.emit(form.value);
+    const wordToAdd = new Word(5, form.value.word1, form.value.word2);
+    this.httpService.storeWord(wordToAdd);
     form.reset();
   }
-
-  // using ViewChild instead of form submit input
-  // onSubmit() {
-  //   console.log(this.formRef.value.word);
-  //   this.formInputValue = this.formRef.value;
-  // }
-
-  // onAddItem() {
-  //   const wordInput = this.wordInputRef.nativeElement.value;
-  //   this.wordService.wordToAdd.emit(wordInput);
-  // }
-
 }

@@ -1,19 +1,33 @@
+import { Injectable, OnDestroy } from '@angular/core';
 import { Word } from './shared/word.model';
-import { EventEmitter } from '@angular/core';
+import { Subject, Subscription } from 'rxjs';
 
-export class WordService {
+@Injectable()
+export class WordService implements OnDestroy {
+  public words: Word[] = [];
   // words = [
-  //   'one',
-  //   'two',
-  //   'three'
+  //   new Word(0, 'word0e', 'word0h'),
+  //   new Word(1, 'word1e', 'word1h'),
+  //   new Word(2, 'word2e', 'word2h'),
   // ];
 
-  words = [
-    new Word(0, 'word0e', 'word0h'),
-    new Word(1, 'word1e', 'word1h'),
-    new Word(2, 'word2e', 'word2h'),
-  ];
+  // wordToAdd = new EventEmitter<string>();
+  wordToAdd = new Subject<Word>();
+  wordSubscription: Subscription;
 
-  wordToAdd = new EventEmitter<string>();
+  wordsChanged = new Subject<Word[]>();
 
+
+  setWords(words: Word[]) {
+    this.words = words;
+    this.wordsChanged.next(this.words);
+  }
+
+  getWords() {
+    return this.words.slice();
+  }
+
+  ngOnDestroy(): void {
+    this.wordSubscription.unsubscribe();
+  }
 }
