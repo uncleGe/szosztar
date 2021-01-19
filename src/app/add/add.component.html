@@ -8,13 +8,13 @@
       <div class="row">
         <div class="col-sm-5 form-group">
           <label
-            for="word1"
+            for="english"
             style="color: var(--sz-blue)"
-            >Word1</label>
+            >English</label>
           <input
             type="text"
-            id="word1"
-            name="word1" 
+            id="english"
+            name="english" 
             class="form-control"
             ngModel
             required
@@ -25,13 +25,13 @@
       <div class="row">
         <div class="col-sm-5 form-group">
           <label
-            for="word2"
+            for="hungarian"
             style="color: var(--sz-green)"
-            >Word2</label>
+            >Hungarian</label>
           <input
             type="text"
-            id="word2"
-            name="word2" 
+            id="hungarian"
+            name="hungarian" 
             class="form-control"
             ngModel
             required
@@ -41,14 +41,15 @@
 
       <div class="row">
         <div class="col-sm-5 form-group">
-          <label for="category">Category</label>
-          <input
-            type="text"
-            id="category"
-            name="category" 
-            class="form-control"
-            ngModel
-            #wordInput>
+          <label for="category input-group-text">Category</label>
+            <select
+              name="category"
+              class="form-control custom-select"
+              id="category"
+              ngModel>
+              <option *ngFor = "let cat of categories" [value]="cat">{{cat}}
+              </option>
+            </select>
         </div>
       </div>
 

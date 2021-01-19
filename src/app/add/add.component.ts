@@ -13,6 +13,12 @@ export class AddComponent implements OnInit {
   // @ViewChild('wordInput', { static: false }) wordInputRef: ElementRef;
   // @ViewChild('f', { static: false }) formRef: NgForm;
   // formInputValue = '';
+  // categories = [
+  //   'food',
+  //   'animals',
+  //   'greetings'
+  // ];
+  public categories: string[] = [];
 
   constructor(
     public wordService: WordService,
@@ -20,11 +26,24 @@ export class AddComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    this.httpService.getCategories();
+    this.wordService.categoriesChanged.subscribe(
+      (categoriesData) => {
+        this.categories = categoriesData;
+    });
   }
 
   onSubmit(form: NgForm) {
-    const wordToAdd = new Word(5, form.value.word1, form.value.word2);
-    this.httpService.storeWord(wordToAdd);
+    const wordToAdd = new Word(
+      0,
+      form.value.english,
+      form.value.hungarian,
+      form.value.category
+      );
+    this.httpService.postWord(wordToAdd);
+    // console.log('add:');
+    // console.log(form.value.english, form.value.hungarian, form.value.category);
+    // console.log(wordToAdd);
     form.reset();
   }
 }

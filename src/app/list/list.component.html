@@ -1,5 +1,54 @@
 <h1> List </h1>
 <div class="row">
+  <div class="col-xs-7">
+    <label for="category input-group-text">Category</label>
+    <select
+      name="category"
+      class="form-control custom-select"
+      id="category"
+      ngModel
+      (ngModelChange)="onFilter($event)">
+      <option *ngFor = "let cat of categories" [value]="cat">{{cat}}
+      </option>
+  </select>
+  </div>
+</div>
+
+<div
+  class="row"
+  *ngIf="newCategory">
+  <div class="col-xs-12">
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <label
+      for="newCat"
+      style="color: var(--sz-red); padding-top: 10px"
+      >New Category</label>
+      <div class="row">
+        <div class="col-sm-7 form-group">
+          <input
+            type="text"
+            id="newCat"
+            name="newCat" 
+            class="form-control"
+            ngModel
+            required>
+        </div>
+
+        <div class="col-sm-2 form-group">
+          <button
+            class="btn btn-success"
+            type="submit"
+            [disabled]="!f.valid"
+            >Add
+          </button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<div class="row">
   <div class="col-xs-12">
     <!-- <ul class="list-group">
       <li class="list-group-item"
@@ -24,7 +73,7 @@
             scope="col"
             style="font-size: x-large;"
             *ngFor="let column of columns"
-            [ngClass]="{eng: column === 'word1'}"
+            [ngClass]="{eng: column === 'english'}"
             >
             {{column}}
           </th>
@@ -34,11 +83,11 @@
         <tr *ngFor="let word of words; let i = index">
           <th
             scope="row"
-            style="color: var(--sz-blue-grey)">{{i}}</th>
+            style="color: var(--sz-blue-grey)">{{i + 1}}</th>
           <td
             style="font-size: large;"
             *ngFor="let column of columns"
-            [ngClass]="{eng: column === 'word1'}"
+            [ngClass]="{eng: column === 'english'}"
             >
             {{word[column]}}
           </td>

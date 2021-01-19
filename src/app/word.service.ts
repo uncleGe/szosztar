@@ -3,8 +3,9 @@ import { Word } from './shared/word.model';
 import { Subject, Subscription } from 'rxjs';
 
 @Injectable()
-export class WordService implements OnDestroy {
+export class WordService {
   public words: Word[] = [];
+  public categories: string[] = [];
   // words = [
   //   new Word(0, 'word0e', 'word0h'),
   //   new Word(1, 'word1e', 'word1h'),
@@ -12,22 +13,34 @@ export class WordService implements OnDestroy {
   // ];
 
   // wordToAdd = new EventEmitter<string>();
-  wordToAdd = new Subject<Word>();
-  wordSubscription: Subscription;
+  // wordToAdd = new Subject<Word>();
+  // categoryToAdd = new Subject<Word>();
 
   wordsChanged = new Subject<Word[]>();
+  categoriesChanged = new Subject<string[]>();
 
+  // wordSubscription: Subscription;
+
+
+  getWords() {
+    return this.words.slice();
+  }
 
   setWords(words: Word[]) {
     this.words = words;
     this.wordsChanged.next(this.words);
   }
 
-  getWords() {
-    return this.words.slice();
+  getCategories() {
+    return this.categories.slice();
   }
 
-  ngOnDestroy(): void {
-    this.wordSubscription.unsubscribe();
+  setCategories(categories: string[]) {
+    this.categories = categories;
+    this.categoriesChanged.next(this.categories);
   }
+
+  // ngOnDestroy(): void {
+  //   this.wordSubscription.unsubscribe();
+  // }
 }
