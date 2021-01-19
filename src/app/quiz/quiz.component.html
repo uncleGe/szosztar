@@ -1,0 +1,119 @@
+<h1> Quiz </h1>
+<div
+  class="row"
+  style="padding-bottom: 10px;">
+  <div class="col-xs-7">
+    <label for="category input-group-text">Category</label>
+    <select
+      name="category"
+      class="form-control custom-select"
+      id="category"
+      ngModel
+      (ngModelChange)="onFilter($event)">
+      <option *ngFor = "let cat of categories" [value]="cat">{{cat}}
+      </option>
+  </select>
+  </div>
+</div>
+
+<label for="category input-group-text">Quiz me on:</label>
+<div
+  class="row"
+  style="padding-bottom: 10px;">
+  <div class="col-xs-7">
+    <select
+      name="quizType"
+      class="form-control custom-select"
+      id="quizType"
+      ngModel
+      (ngModelChange)="onQuizSelect($event);selected = true">
+      <option *ngFor = "let col of columns" [value]="col">{{col}}
+      </option>
+    </select>
+  </div>
+  <div
+    *ngIf="!selected && selection !== ''"
+    class="col-xs-5 form-group">
+    <button
+      class="btn btn-primary"
+      (click)="onQuizSelect(selection);selected = true"
+      >Again
+    </button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+
+    <table class="
+      table
+      table-striped 
+      table-dark"> 
+      <thead>
+        <tr>
+          <!-- <th
+            scope="col"
+            style="
+              color: var(--sz-blue-grey);
+              font-size: x-large;
+              ">#
+          </th> -->
+          <th
+            scope="col"
+            style="font-size: x-large;"
+            *ngFor="let column of columns"
+            [ngClass]="{eng: column === 'english'}"
+            >
+            {{column}}
+          </th>
+        </tr>
+      </thead>
+      <tbody *ngIf="selected">
+        <tr>
+          <td
+            style="font-size: large; background-color: var(--sz-lighter-dark);"
+            *ngFor="let column of columns"
+            [ngClass]="{eng: column === 'english'}"
+            >
+              <div *ngIf="column !== selection;then display else answer"></div>    
+              <ng-template #display>{{ displayQuizWord }}</ng-template>
+              <ng-template #answer>
+                <form (ngSubmit)="onSubmit(f);selected = false;" #f="ngForm">
+                  <div class="row">
+                    <div class="col-sm-7 form-group">
+                      <input
+                        type="text"
+                        id="quizGuess"
+                        name="quizGuess" 
+                        class="form-control"
+                        ngModel
+                        required>
+                    </div>
+            
+                    <div class="col-sm-2 form-group">
+                      <button
+                        class="btn btn-success"
+                        type="submit"
+                        [disabled]="!f.valid"
+                        >Guess
+                      </button>
+                    </div>
+
+                    <div class="col-sm-2 form-group">
+                      <button
+                        class="btn btn-danger"
+                        (click)="onGiveUp();"
+                        >Give up
+                      </button>
+                    </div>
+                  </div>
+            
+                </form>
+              </ng-template>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>

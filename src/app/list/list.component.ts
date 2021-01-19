@@ -38,16 +38,15 @@ export class ListComponent implements OnInit {
   }
 
   async onSubmit(form: NgForm) {
-    await this.httpService.postCategory(form.value.newCat);
+    this.httpService.postCategory(form.value.newCat);
     this.newCategory = false;
     form.reset();
-    this.httpService.getCategories();
   }
 
   onFilter(category: string) {
     if (category === 'all') {
       this.newCategory = false;
-      this.words =this.wordService.getWords();
+      this.words = this.wordService.getWords();
     }
     else if (category === 'new') {
       this.newCategory = true;

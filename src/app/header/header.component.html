@@ -1,16 +1,12 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
-    <!-- <div class="navbar-header">
-      <a href="#" class="navbar-brand">SZ</a>
-    </div>
-    <div class="collapse navbar-collapse"> -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" (click)="collapsed = !collapsed">
       <span class="icon-bar" *ngFor="let iconBar of [1, 2, 3]"></span>
       </button>
       <a routerLink="/" class="navbar-brand">
         <img
-        src="https://i.imgur.com/mlk4pId.jpg"
+        src="https://i.imgur.com/xBzxl2z.jpg"
         style="margin-top: -8px;"
         width="90">
       </a>
@@ -27,6 +23,12 @@
             routerLink="list"
             (click)="collapsed = !collapsed"
           >List</a>
+        </li>
+        <li routerLinkActive="active">
+          <a
+            routerLink="quiz"
+            (click)="collapsed = !collapsed"
+          >Quiz</a>
         </li>
         <li routerLinkActive="active">
           <a

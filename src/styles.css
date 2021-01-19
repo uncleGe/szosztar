@@ -3,6 +3,7 @@
   --sz-red: #e74c3c;
   --sz-orange: #fa923f;
   --sz-yellow-orange:#faa61a;
+  --sz-yellow: #d2b55b;
   --sz-green: #43b581;
   --sz-blue: #7289da;
   --sz-blue-grey: #607d8b;
@@ -37,9 +38,10 @@ h1, h2, h3 {
 }
 
 label {
-  /* padding: 5px; */
+  /* padding: 5px;  */
   color: var(--sz-blue-grey);
-}
+} 
+
 
 hr {
   padding-bottom: 2px;
@@ -52,6 +54,10 @@ option,
 .list-group-item {
   background-color: var(--sz-lightest-dark);
   color: white;
+}
+
+.custom-select {
+  padding-bottom: 10px;
 }
 
 li:hover {

@@ -16,7 +16,6 @@ export class HttpService {
         .subscribe(
           (categories) => {
             this.wordService.setCategories(categories);
-            // console.log(categories);
         });
   }
 
@@ -24,36 +23,23 @@ export class HttpService {
     return this.http
       .get<Word[]>(
         'https://localhost:5001/api/Word'
-        // , { withCredentials: true }
         )
-        // .pipe(map(responseData => {
-        //   const newArray = [];
-        //   for (const key in responseData) {
-        //     if (true) {
-        //       console.log(key);
-        //       newArray.push(key);
-        //     }
-        //   }
-        //   return newArray;
-        // }))
         .subscribe(
           (words) => {
             this.wordService.setWords(words);
-            // console.log(words);
         });
   }
 
   postWord(word: Word) {
     this.http
       .post(
-        // 'https://szosztar0-default-rtdb.firebaseio.com/words.json',
         'https://localhost:5001/api/Word',
         word
       )
-      .subscribe(response => {
-        // console.log('post response:');
-        // console.log(response);
-      });
+      .subscribe(
+        () =>
+          alert('New Word Submitted')
+      );
   }
 
   postCategory(category: string) {
@@ -64,14 +50,14 @@ export class HttpService {
 
     this.http
       .post(
-        // 'https://szosztar0-default-rtdb.firebaseio.com/words.json',
         'https://localhost:5001/api/Category',
         postString,
         httpOptions
       )
-      .subscribe(response => {
-        // console.log('post response:');
-        // console.log(response);
+      .subscribe(
+        () => {
+          alert('New Category Submited');
+          this.getCategories();
       });
   }
 }

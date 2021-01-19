@@ -10,6 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { HttpClientModule } from '@angular/common/http';
+import { QuizComponent } from './quiz/quiz.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
     ListComponent,
     AddComponent,
     HeaderComponent,
-    DropdownDirective
+    DropdownDirective,
+    QuizComponent
   ],
   imports: [
     BrowserModule,
