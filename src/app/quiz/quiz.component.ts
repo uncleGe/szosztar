@@ -78,6 +78,7 @@ export class QuizComponent implements OnInit {
 
   onGiveUp() {
     // this button just submits nothing and triggers the incorrect alert
+    // adding type="button" would prevent this behavior
   }
 
   onFilter(category: string) {

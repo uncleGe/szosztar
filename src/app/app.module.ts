@@ -9,8 +9,10 @@ import { AddComponent } from './add/add.component';
 import { HeaderComponent } from './header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropdownDirective } from './shared/dropdown.directive';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { QuizComponent } from './quiz/quiz.component';
+import { AuthComponent } from './auth/auth.component';
+import { AuthInterceptorService } from './auth/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { QuizComponent } from './quiz/quiz.component';
     AddComponent,
     HeaderComponent,
     DropdownDirective,
-    QuizComponent
+    QuizComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,14 @@ import { QuizComponent } from './quiz/quiz.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [WordService],
+  providers: [
+    WordService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
