@@ -1,3 +1,4 @@
+import { HttpService } from './../shared/http.service';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -16,6 +17,7 @@ export class AuthComponent {
 
   constructor(
     private authService: AuthService,
+    private httpService: HttpService,
     private router: Router
     ) {}
 
@@ -30,28 +32,36 @@ export class AuthComponent {
     const email = form.value.email;
     const password = form.value.password;
 
-    let authObs: Observable<AuthResponseData>;
-
     this.isLoading = true;
 
     if (this.isLoginMode) {
-      authObs = this.authService.login(email, password);
+      this.authService.login(email, password).subscribe(
+        resData => {
+          console.log(resData);
+          this.router.navigate(['/list']);
+        },
+        errorMessage => {
+          console.log(errorMessage);
+          this.error = errorMessage;
+          this.isLoading = false;
+        }
+      );
     } else {
-      authObs = this.authService.signup(email, password);
+      this.authService.signup(email, password).subscribe(
+        resData => {
+          console.log(resData);
+          const externalId = resData.localId;
+          const username = resData.email;
+          this.httpService.postUser({externalId, username}); // send new user data to back end
+          this.router.navigate(['/add']);
+        },
+        errorMessage => {
+          console.log(errorMessage);
+          this.error = errorMessage;
+          this.isLoading = false;
+        }
+      );
     }
-
-    authObs.subscribe(
-      resData => {
-        console.log(resData);
-        this.isLoading = false;
-        this.router.navigate(['/list']);
-      },
-      errorMessage => {
-        console.log(errorMessage);
-        this.error = errorMessage;
-        this.isLoading = false;
-      }
-    );
 
     form.reset();
   }

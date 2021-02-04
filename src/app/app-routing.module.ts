@@ -10,8 +10,16 @@ import { AuthComponent } from './auth/auth.component';
 const appRoutes: Routes = [
   { path: '', redirectTo: '/list', pathMatch: 'full' },
   { path: 'auth', component: AuthComponent },
-  { path: 'list', component: ListComponent },
-  { path: 'quiz', component: QuizComponent },
+  {
+    path: 'list',
+    component: ListComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'quiz',
+    component: QuizComponent,
+    canActivate: [AuthGuard]
+  },
   {
     path: 'add',
     component: AddComponent,

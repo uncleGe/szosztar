@@ -1,8 +1,8 @@
+import { environment } from './../../environments/environment';
 import { AuthService } from './../auth/auth.service';
 import { WordService } from './../word.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { exhaust, exhaustMap, map, take, tap } from 'rxjs/operators';
 import { Word } from './word.model';
 
 @Injectable({ providedIn: 'root' })
@@ -15,7 +15,7 @@ export class HttpService {
   getCategories() {
     return this.http
       .get<string[]>(
-        'https://localhost:5001/api/Category'
+        environment.BaseUrl + '/Category'
         )
         .subscribe(
           (categories) => {
@@ -26,8 +26,8 @@ export class HttpService {
   getWords() {
     return this.http
       .get<Word[]>(
-        'https://szosztar0-default-rtdb.firebaseio.com/words.json',
-        // 'https://localhost:5001/api/Word'
+        // 'https://szosztar0-default-rtdb.firebaseio.com/words.json',
+        environment.BaseUrl + '/Word'
         )
         .subscribe(
           (words) => {
@@ -55,11 +55,27 @@ export class HttpService {
   //   });
   // }
 
+  postUser({externalId,  username}) {
+    this.http
+      .post(
+        // 'https://szosztar0-default-rtdb.firebaseio.com/words.json',
+        environment.BaseUrl + '/User',
+        {externalId, username}
+      )
+      .subscribe(
+        () => {
+          console.log('postuser:');
+          console.log('{externalId, username}');
+          alert('Your account has been created.');
+        }
+      );
+  }
+
   postWord(word: Word) {
     this.http
       .post(
-        'https://szosztar0-default-rtdb.firebaseio.com/words.json',
-        // 'https://localhost:5001/api/Word',
+        // 'https://szosztar0-default-rtdb.firebaseio.com/words.json',
+        environment.BaseUrl + '/Word',
         word
       )
       .subscribe(
@@ -76,7 +92,7 @@ export class HttpService {
 
     this.http
       .post(
-        'https://localhost:5001/api/Category',
+        environment.BaseUrl + '/Category',
         postString,
         httpOptions
       )

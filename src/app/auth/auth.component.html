@@ -39,10 +39,11 @@
         >
           {{ isLoginMode ? 'Login' : 'Sign Up' }}
         </button>
-        |
-        <button class="btn btn-primary" (click)="onSwitchMode()" type="button">
-          Switch to {{ isLoginMode ? 'Sign Up' : 'Login' }}
-        </button>
+      </div>
+      <div style="padding: 5px;">
+        <a (click)="onSwitchMode()" type="button">
+          {{ isLoginMode ? 'Sign Up' : 'Login' }}
+        </a>
       </div>
     </form>
   </div>

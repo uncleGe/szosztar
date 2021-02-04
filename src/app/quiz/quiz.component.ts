@@ -59,11 +59,6 @@ export class QuizComponent implements OnInit {
     }
 
     console.log(this.englishQuizWord, this.hungarianQuizWord, this.displayQuizWord, this.answer);
-
-    // console.log(val);
-    // console.log(form.value.quizType);
-    // this.httpService.postCategory(form.value.quizType);
-    // form.reset();
   }
 
   onSubmit(form: NgForm) {

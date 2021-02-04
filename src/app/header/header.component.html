@@ -24,13 +24,19 @@
         >
           <a routerLink="/auth">Authenticate</a>
         </li>
-        <li routerLinkActive="active">
+        <li
+          routerLinkActive="active"
+          *ngIf="isAuthenticated"
+        >
           <a
             routerLink="list"
             (click)="collapsed = !collapsed"
           >List</a>
         </li>
-        <li routerLinkActive="active">
+        <li
+          routerLinkActive="active"
+          *ngIf="isAuthenticated"
+        >
           <a
             routerLink="quiz"
             (click)="collapsed = !collapsed"
@@ -56,7 +62,7 @@
             (click)="onLogout()"
           >Logout</a>
         </li>
-        <li 
+        <!-- <li 
           class="dropdown"
           *ngIf="!isAuthenticated"
           appDropdown>
@@ -65,7 +71,7 @@
             <li><a style="cursor: pointer;">Save Data</a></li>
             <li><a style="cursor: pointer;">Fetch Data</a></li>
           </ul>
-        </li>
+        </li> -->
       </ul>
     </div>
   </div>
