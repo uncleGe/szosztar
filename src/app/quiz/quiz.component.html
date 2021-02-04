@@ -78,7 +78,10 @@
               <div *ngIf="column !== selection;then display else answer"></div>    
               <ng-template #display>{{ displayQuizWord }}</ng-template>
               <ng-template #answer>
-                <form (ngSubmit)="onSubmit(f);selected = false;" #f="ngForm">
+                <form
+                  (ngSubmit)="onSubmit(f);selected = false;"
+                  #f="ngForm"
+                  autocomplete="off">
                   <div class="row">
                     <div class="col-sm-7 form-group">
                       <input
